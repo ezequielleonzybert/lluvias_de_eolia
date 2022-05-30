@@ -13,7 +13,7 @@ class Button{
                 fill(255);
                 stroke(100);
                 //como processing dibuja las lineas por fuera de la figura hice esto para evitarlo:
-                strokeweight = radius * .1; 
+                strokeweight = radius * .1;
                 strokeWeight(strokeweight);
                 circle(position.x, position.y, radius * 2 - strokeweight/2);
             break;

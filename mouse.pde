@@ -16,12 +16,26 @@ void mousePressed(){
             translation_target = constrain(translation_target - width, -width, 0);
             break;
     }
+    for(Drop d : drops){
+        if(d.hover()){
+            d.drag = true;
+        }
+    }
 }
 
 void mouseDragged(){
-
+    for(Drop d : drops){
+        if(d.hover()){
+            d.drag = true;
+        }
+    }
 }
 
 void mouseReleased() {
-    
+    for(Drop d : drops){
+        if(d.drag){
+            d.drag = false;
+            d.velocity.y = 0;
+        }
+    }
 }
