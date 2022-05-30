@@ -6,4 +6,3 @@ void translateSmooth(){
     else translation_display = translation_target;     
     translate(translation_display, 0);
 }
-
