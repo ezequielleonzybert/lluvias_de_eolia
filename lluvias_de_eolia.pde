@@ -14,6 +14,7 @@ void draw(){
     ui.update();
     ui.render();
     for(Drop d : drops){
+        d.update();
         d.render();
     }
 }
