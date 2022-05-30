@@ -20,7 +20,7 @@ class Button{
                 case "potentiometer":
                     fill(255);
                     stroke(100);
-                    strokeweight = radius * .3;
+                    strokeweight = radius * .4;
                     strokeWeight(strokeweight);
                     circle(position.x, position.y, radius * 2 - strokeweight/2);
                 break;
