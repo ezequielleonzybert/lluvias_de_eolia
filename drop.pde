@@ -40,4 +40,3 @@ class Drop{ //particulas de la escena 1
         return false;
     }
 }
-

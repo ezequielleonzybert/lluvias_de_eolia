@@ -3,7 +3,7 @@ void mousePressed(){
     int container_index = ui.hover().container_index;
     String button_type = ui.hover().button_type;
     int button_index = ui.hover().button_index;
-    
+
     if(button_index != -1){
         ui.containers[container_index].buttons[button_index].active = true;
     }
@@ -52,5 +52,4 @@ void mouseReleased() {
             b.active = false;
         }
     }
-    
 }
