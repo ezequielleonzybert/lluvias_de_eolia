@@ -6,10 +6,13 @@ void mousePressed(){
             switch (button) {
                 case 0:  //agrego una particula con su constructor
                     drops.add(new Drop(
-                        ui.containers[0].buttons[0].position.x,
-                        ui.containers[0].buttons[0].position.y)
+                        ui.containers[0].buttons[button].position.x,
+                        ui.containers[0].buttons[button].position.y)
                     );
-                break;            
+                break;   
+                case 1:
+                    ui.containers[0].buttons[button].active = true;
+                break;         
             }
             break;
         case "slide_L": //aplicando translate por medio de las dos variables translation
@@ -22,6 +25,13 @@ void mousePressed(){
 }
 
 void mouseDragged(){
+    for(UI.Container c : ui.containers){
+        for (Button b : c.buttons){
+            if(b.active){
+                b.rotation = constrain(map(mouseX, 0, width, 0, 1), 0, 1);
+            }
+        }
+    }
 }
 
 void mouseReleased() {
@@ -32,6 +42,11 @@ void mouseReleased() {
             if(ui.hover().button_type == "trashcan"){
                 drops.remove(i); 
             }
+        }
+    }
+    for(UI.Container c : ui.containers){
+        for(Button b : c.buttons){
+            b.active = false;
         }
     }
     
