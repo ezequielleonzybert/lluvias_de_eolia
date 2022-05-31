@@ -1,5 +1,6 @@
 //Ezequiel León Zybert
 
+import java.util.*;
 UI ui; //creo un objeto para la interfaz gráfica
 ArrayList<Drop> drops; //un array donde se van a guardar las particulas de la escena 1
 float translation_display, translation_target; //dos variables para el mecanismo de transición suave entre escenas

@@ -1,11 +1,14 @@
 void mousePressed(){
-    String container = ui.hover_container(); //le asigno el nombre del container a la variable container
-    int button = ui.hover_button(); // y el nombre del boton a la variable button
+    String container = ui.hover().container_id;
+    int button = ui.hover().button_index;
     switch(container) {
         case "menu_1":
             switch (button) {
                 case 0:  //agrego una particula con su constructor
-                    drops.add(new Drop(ui.containers[0].buttons[0].position.x, ui.containers[0].buttons[0].position.y));
+                    drops.add(new Drop(
+                        ui.containers[0].buttons[0].position.x,
+                        ui.containers[0].buttons[0].position.y)
+                    );
                 break;            
             }
             break;
@@ -22,10 +25,14 @@ void mouseDragged(){
 }
 
 void mouseReleased() {
-    for(Drop d : drops){
-        if(d.drag){
-            d.drag = false;
-            d.velocity.y = 0;
+    for(int i = drops.size() - 1; i >= 0; i--){
+        if(drops.get(i).drag){
+            drops.get(i).drag = false;
+            drops.get(i).velocity.y = 0;
+            if(ui.hover().button_type == "trashcan"){
+                drops.remove(i); 
+            }
         }
     }
+    
 }

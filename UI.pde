@@ -43,6 +43,15 @@ class UI{
             }
         }
     }
+    class Hover{
+        String container_id, button_type;
+        int button_index;
+        Hover(String c, String b, int i){
+            container_id = c;
+            button_type = b;
+            button_index = i;
+        }
+    }
     Container[] containers = new Container[5]; //instanciando los container
     UI(){ //creando cada menú, con sus respectivos botones usando el constructor
         containers[0] = new Container("menu_1", width/2, thickness/2, thickness * 3, thickness, 3);
@@ -75,31 +84,25 @@ class UI{
             c.render();
         }
     }
-    String hover_container(){ //método para saber si el mouse esta sobre un container
-        for(Container c : containers){ 
-             //al mouse se le aplica translate también para que coincida con lo renderizado
+    Hover hover(){
+        String container_id, button_type;
+        for(Container c : containers){
             if(pointInRect(mouseX - translation_display, mouseY, c.position.x, c.position.y, c.w, c.h)){
-                return c.id; //devuelve el nombre del container
+                container_id = c.id;
+                for(int i = 0; i < c.buttons.length; i++){
+                    float
+                        x = c.buttons[i].position.x,
+                        y = c.buttons[i].position.y,
+                        r = c.buttons[i].radius;
+                    if(pointInCircle(mouseX - translation_display, mouseY, x, y, r)){ 
+                        button_type = c.buttons[i].type;
+                        return new Hover(container_id, button_type, i);
+                    } 
+                }
+                return new Hover(container_id, "", -1);
             }
         }
-        return "";
-    }
-    int hover_button(){ //método para saber si el mouse esta sobre un boton
-        String s = hover_container();
-        if(s.contains("menu")){ //se verifica que el nombre del container contenga la palabra "menu"
-            int j = s.charAt(5) - '1'; //se extrae el 5to caracter del nombre, que indica si es el menu 1, 2 o 3
-            //dependiendo el menu que sea, el bucle cambia su cantidad de iteraciones para recorrer los botones
-            for(int i = 0; i < containers[j].buttons.length; i++){ 
-                float x = containers[j].buttons[i].position.x;
-                float y = containers[j].buttons[i].position.y;
-                float r = containers[j].buttons[i].radius;
-                //se calcula la distancia entre mouse y boton y se compara con el radio del boton
-                if(pointInCircle(mouseX - translation_display, mouseY, x, y, r)){ 
-                    return i; //devuelve el número de botón
-                } 
-            }
-        } 
-        return -1;
+        return new Hover("", "", -1);
     }
 }
 
