@@ -1,18 +1,21 @@
 void mousePressed(){
-    String container = ui.hover().container_id;
-    int button = ui.hover().button_index;
-    switch(container) {
+    String container_id = ui.hover().container_id;
+    int container_index = ui.hover().container_index;
+    String button_type = ui.hover().button_type;
+    int button_index = ui.hover().button_index;
+    
+    if(button_index != -1){
+        ui.containers[container_index].buttons[button_index].active = true;
+    }
+    switch(container_id) {
         case "menu_1":
-            switch (button) {
+            switch (button_index) {
                 case 0:  //agrego una particula con su constructor
                     drops.add(new Drop(
-                        ui.containers[0].buttons[button].position.x,
-                        ui.containers[0].buttons[button].position.y)
+                        ui.containers[0].buttons[button_index].position.x,
+                        ui.containers[0].buttons[button_index].position.y)
                     );
-                break;   
-                case 1:
-                    ui.containers[0].buttons[button].active = true;
-                break;         
+                break;       
             }
             break;
         case "slide_L": //aplicando translate por medio de las dos variables translation

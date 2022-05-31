@@ -45,9 +45,10 @@ class UI{
     }
     class Hover{
         String container_id, button_type;
-        int button_index;
-        Hover(String c, String b, int i){
+        int container_index, button_index;
+        Hover(String c, int j, String b, int i){
             container_id = c;
+            container_index = j;
             button_type = b;
             button_index = i;
         }
@@ -86,23 +87,28 @@ class UI{
     }
     Hover hover(){
         String container_id, button_type;
-        for(Container c : containers){
-            if(pointInRect(mouseX - translation_display, mouseY, c.position.x, c.position.y, c.w, c.h)){
-                container_id = c.id;
-                for(int i = 0; i < c.buttons.length; i++){
+        for(int j = 0; j < containers.length; j++){
+            if(pointInRect(
+                mouseX - translation_display, 
+                mouseY, containers[j].position.x, 
+                containers[j].position.y, 
+                containers[j].w, containers[j].h)
+            ){
+                container_id = containers[j].id;
+                for(int i = 0; i < containers[j].buttons.length; i++){
                     float
-                        x = c.buttons[i].position.x,
-                        y = c.buttons[i].position.y,
-                        r = c.buttons[i].radius;
+                        x = containers[j].buttons[i].position.x,
+                        y = containers[j].buttons[i].position.y,
+                        r = containers[j].buttons[i].radius;
                     if(pointInCircle(mouseX - translation_display, mouseY, x, y, r)){ 
-                        button_type = c.buttons[i].type;
-                        return new Hover(container_id, button_type, i);
+                        button_type = containers[j].buttons[i].type;
+                        return new Hover(container_id, j, button_type, i);
                     } 
                 }
-                return new Hover(container_id, "", -1);
+                return new Hover(container_id, j, "", -1);
             }
         }
-        return new Hover("", "", -1);
+        return new Hover("", -1, "", -1);
     }
 }
 
