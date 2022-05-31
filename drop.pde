@@ -10,6 +10,10 @@ class Drop{ //particulas de la escena 1
     }
     void update(){
         if(!drag){
+            if(hover() && mousePressed){
+                drag = true;
+                return;
+            }
             velocity.add(acceleration);
             //la verdad no entiendo por que tengo que usar dos veces la funcion de add(velocity),
             // pero si la uso una única vez, la posición máxima del rebote varía en cada rebote

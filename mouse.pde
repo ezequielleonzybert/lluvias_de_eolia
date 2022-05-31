@@ -16,19 +16,9 @@ void mousePressed(){
             translation_target = constrain(translation_target - width, -width, 0);
             break;
     }
-    for(Drop d : drops){
-        if(d.hover()){
-            d.drag = true;
-        }
-    }
 }
 
 void mouseDragged(){
-    for(Drop d : drops){
-        if(d.hover()){
-            d.drag = true;
-        }
-    }
 }
 
 void mouseReleased() {
