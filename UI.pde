@@ -1,5 +1,5 @@
 class UI{
-    float thickness = width * .05; // grosor de los menu
+    float thickness = width * .06; // tamaño del menu
     class Container{ //hay 3 menues y 2 botones para pasar de escena, son los containers
         String id; 
         PVector position;

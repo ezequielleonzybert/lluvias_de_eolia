@@ -9,13 +9,19 @@ void mousePressed(){
     }
     switch(container_id) {
         case "menu_1":
-            switch (button_index) {
-                case 0:  //agrego una particula con su constructor
-                    drops.add(new Drop(
-                        ui.containers[0].buttons[button_index].position.x,
-                        ui.containers[0].buttons[button_index].position.y)
-                    );
-                break;       
+            if(button_index == 0){
+                drops.add(new Drop(
+                    ui.containers[container_index].buttons[button_index].position.x,
+                    ui.containers[container_index].buttons[button_index].position.y)
+                );      
+            }
+            break;
+        case "menu_2":
+            if(button_index == 0){
+                orbs.add(new Orb(
+                    ui.containers[container_index].buttons[button_index].position.x,
+                    ui.containers[container_index].buttons[button_index].position.y)
+                );
             }
             break;
         case "slide_L": //aplicando translate por medio de las dos variables translation
