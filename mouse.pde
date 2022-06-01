@@ -53,6 +53,14 @@ void mouseReleased() {
             }
         }
     }
+    for(int i = orbs.size() - 1; i >= 0; i--){
+        if(orbs.get(i).drag){
+            orbs.get(i).drag = false;
+            if(ui.hover().button_type == "trashcan"){
+                orbs.remove(i); 
+            }
+        }
+    }
     for(UI.Container c : ui.containers){
         for(Button b : c.buttons){
             b.active = false;

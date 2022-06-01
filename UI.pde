@@ -30,14 +30,31 @@ class UI{
         }
         void render(){ //dibujando los containers
             noStroke();
-            fill(255);
             rectMode(CENTER);
-            if(id == "slide_L")
-                rect(position.x, height/2, w, h, 0,20,20,0);
-            else if(id == "slide_R")
-                rect(position.x, height/2, w, h, 20,0,0,20);
-            else
+            if(id == "slide_L"){
+                fill(255);
+                rect(position.x, position.y, w, h, 0,20,20,0);
+                fill(100);
+                triangle(
+                    position.x + w/5, position.y + w/5,
+                    position.x + w/5, position.y - w/5,
+                    position.x - w/5, position.y
+                );
+            }
+            else if(id == "slide_R"){
+                fill(255);
+                rect(position.x, position.y, w, h, 20,0,0,20);
+                fill(100);
+                triangle(
+                    position.x - w/5, position.y + w/5,
+                    position.x - w/5, position.y - w/5,
+                    position.x + w/5, position.y
+                );
+            }
+            else{
+                fill(255);
                 rect(position.x, position.y, w, h, 0,0,20,20);
+            }
             for(Button b : buttons){
                 b.render();
             }
