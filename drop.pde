@@ -8,7 +8,7 @@ class Drop extends Particle{ //particulas de la escena 1
     }
     void update(){
         super.update();
-        if(!drag){
+        if(!super.drag){
             velocity.add(acceleration);
             position.add(velocity); 
             if(position.y + radius > height){ //rebotar en el borde inferior

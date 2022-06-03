@@ -1,13 +1,35 @@
 class Button{
+    int id;
     String type; //tipo de boton, puede ser circulo, potenciometro o tacho de basura
     PVector position;
     float radius;
     float rotation;
     boolean active;
-    Button(float x, float y, float r){ //constructor del botón
+    Button(int id, float x, float y, float r){ //constructor del botón
+        this.id = id;
         position = new PVector(x, y);
         radius = r;
-        rotation = .5;
+        rotation = 0;
+    }
+    void update(){
+        for(Orb o : orbs){
+            if(o.selected){
+                switch(id){
+                    case 1:
+                        rotation = o.oscilX;
+                        break;
+                    case 2: 
+                        rotation = o.oscilY;
+                        break;
+                    case 3: 
+                        rotation = o.speedX;
+                        break;
+                    case 4: 
+                        rotation = o.speedY;
+                        break;
+                }
+            }
+        }
     }
     void render(){
         float strokeweight;
@@ -28,11 +50,11 @@ class Button{
                 strokeweight = radius * .4;
                 strokeWeight(strokeweight);
                 circle(0, 0, radius * 2 - strokeweight/2);
-                rotate(rotation * TWO_PI);
+                rotate(rotation  - PI * .9);
                 fill(100);
                 noStroke();
                 float a = radius * .15;
-                triangle(-a, a, a, a, 0, 3 * a);
+                triangle(-a, -a, a, -a, 0, -3 * a);
                 pop();
             break;
             case "trashcan":

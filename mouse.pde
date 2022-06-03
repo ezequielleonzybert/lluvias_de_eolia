@@ -37,7 +37,7 @@ void mouseDragged(){
     for(UI.Container c : ui.containers){
         for (Button b : c.buttons){
             if(b.active){
-                b.rotation = constrain(map(mouseX, 0, width, 0, 1), 0, 1);
+                b.rotation = constrain(map(mouseX, 0, width, 0, TWO_PI * .9), 0, TWO_PI * .9);
             }
         }
     }
@@ -56,6 +56,8 @@ void mouseReleased() {
     for(int i = orbs.size() - 1; i >= 0; i--){
         if(orbs.get(i).drag){
             orbs.get(i).drag = false;
+            orbs.get(i).position_origin.x = orbs.get(i).position.x;
+            orbs.get(i).position_origin.y = orbs.get(i).position.y;
             if(ui.hover().button_type == "trashcan"){
                 orbs.remove(i); 
             }

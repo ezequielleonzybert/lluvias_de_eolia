@@ -15,7 +15,7 @@ class UI{
                 float xb, yb;
                 xb = position.x - w/2 + (i+.5) * w/buttons_amount ; //posición de cada boton
                 yb = position.y;
-                buttons[i] = new Button(xb, yb, thickness * .3); //llamamos al constructor de la clase Button
+                buttons[i] = new Button(i, xb, yb, thickness * .3); //llamamos al constructor de la clase Button
             }
         }
         void update(){ 
@@ -26,6 +26,9 @@ class UI{
             }
             else if(id == "slide_R"){
                 position.x = width - thickness/2 - translation_display;
+            }
+            for(Orb o : orbs){
+                o.update();
             }
         }
         void render(){ //dibujando los containers

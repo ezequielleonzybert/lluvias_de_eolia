@@ -1,11 +1,18 @@
 class Particle{
     PVector position;
     float radius;
-    boolean drag;
+    boolean drag, selected;
     void update(){
         if(!drag){
             if(hover() && mousePressed){
                 drag = true;
+                for(Drop d : drops){
+                    d.selected = false;
+                }
+                for(Orb o : orbs){
+                    o.selected = false;
+                }
+                selected = true;
                 return;
             }
         }
@@ -15,9 +22,15 @@ class Particle{
         }
     }
     void render(){
+        float strokeweight = radius * .1;
+        if(selected){
+            noFill();
+            stroke(255);
+            strokeWeight(strokeweight);
+            circle(position.x, position.y, radius * 2.75);
+        }
         fill(255);
         stroke(100);
-        float strokeweight = radius * .1;
         strokeWeight(strokeweight);
         circle(position.x, position.y, radius * 2 - strokeweight/2); 
     }
@@ -25,6 +38,6 @@ class Particle{
         if(pointInCircle(mouseX - translation_display, mouseY, position.x, position.y, radius)){
             return true;
         }
-        return false;
+        return false; 
     }
 }
