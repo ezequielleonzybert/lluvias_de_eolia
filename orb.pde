@@ -26,7 +26,7 @@ class Orb extends Particle{ //clase para las particulas de la escena 2
         //llamamos al update() de la clase madre Particule
         super.update();
         //mapeamos la posición en la mantalla para asignar frequencia y ganancia al audio
-        float freq = map(super.position.x, 0, width, 0, 200); println(freq);
+        float freq = map(super.position.x, 0, width, 0, 200);
         float gain = map(super.position.y, height, 0, -30, 12);
         //llamamos al método update de audio con los datos procesados anteriormente
         audio.update(freq, gain);

@@ -54,6 +54,13 @@ class UI{
                     position.x + w/5, position.y
                 );
             }
+            else if(id == "menu_2"){
+                fill(255);
+                rect(position.x, position.y, w, h, 0,0,20,20);
+                fill(100);
+                text("OSC", position.x - w/5.15, position.y + h/3);
+                text("FRQ", position.x + w/7.1, position.y + h/3);
+            }
             else{
                 fill(255);
                 rect(position.x, position.y, w, h, 0,0,20,20);
