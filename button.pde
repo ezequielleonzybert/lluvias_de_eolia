@@ -16,10 +16,10 @@ class Button{
             if(o.selected){
                 switch(id){
                     case 1:
-                        rotation = o.oscilX;
+                        rotation = o.oscX;
                         break;
                     case 2: 
-                        rotation = o.oscilY;
+                        rotation = o.oscY;
                         break;
                     case 3: 
                         rotation = o.speedX;

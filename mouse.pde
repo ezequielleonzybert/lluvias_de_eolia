@@ -53,13 +53,24 @@ void mouseReleased() {
             }
         }
     }
+    //buscamos cuál es la orbe siendo arrastrada
+    //el for() debe ser inverso, de mayor a menor, 
+    //para que no haya problemas de orden al llamar
+    //al método remove() de ArrayList
     for(int i = orbs.size() - 1; i >= 0; i--){
         if(orbs.get(i).drag){
-            orbs.get(i).drag = false;
+            //dejamos de arrastrarla
+            orbs.get(i).drag = false; 
+            //le damos su nueva posición
             orbs.get(i).position_origin.x = orbs.get(i).position.x;
             orbs.get(i).position_origin.y = orbs.get(i).position.y;
+            //si estamos sobre el botón de eliminar particula
+            //muteamos su salida de audio y removemos esta partícula
+            //del array de partículas (no sabía como eliminar el objeto
+            //de audio completamente así que decidí bajarle la ganancia).
             if(ui.hover().button_type == "trashcan"){
-                orbs.remove(i); 
+                orbs.get(i).audio.gain.setValue(-100);
+                orbs.remove(i);
             }
         }
     }
