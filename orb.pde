@@ -6,6 +6,10 @@ class Orb extends Particle{
         super.radius = ui.containers[0].buttons[0].radius;
         oscilX = oscilY = speedX = speedY = 0;
         position_origin = new PVector();
+        for(Orb o : orbs){
+            o.selected = false;
+        }
+        super.selected = true;
         for(Button b : ui.containers[1].buttons){
             b.rotation = 0;
         }

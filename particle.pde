@@ -13,6 +13,27 @@ class Particle{
                     o.selected = false;
                 }
                 selected = true;
+                 //igualamos los valores de los potenciómetros a los de la partícula seleccionada
+                for(Button b : ui.containers[1].buttons){
+                    for(Orb o : orbs){
+                        if(o.selected){
+                            switch(b.id){
+                            case 1:
+                                b.rotation = o.oscilX;
+                                break;
+                            case 2:
+                                b.rotation = o.oscilY;
+                                break;
+                            case 3:
+                                b.rotation = o.speedX;
+                                break;
+                            case 4:
+                                b.rotation = o.speedY;
+                                break;
+                            }
+                        }
+                    }
+                }
                 return;
             }
         }
