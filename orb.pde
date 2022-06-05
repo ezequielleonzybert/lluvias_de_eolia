@@ -26,15 +26,15 @@ class Orb extends Particle{ //clase para las particulas de la escena 2
         //llamamos al update() de la clase madre Particule
         super.update();
         //mapeamos la posición en la mantalla para asignar frequencia y ganancia al audio
-        float freq = map(super.position.x, 0, width, 0, 200);
-        float gain = map(super.position.y, height, 0, -30, 12);
+        float freq = map(super.position.x, width, 2 * width, 50, 200);
+        float gain = map(super.position.y, height, 0, -30, 20);
         //llamamos al método update de audio con los datos procesados anteriormente
         audio.update(freq, gain);
         //si no se está arrastrando la partículoa...
         if(!super.drag){ 
             //le asignamos la posición con respecto a los atributos de la misma.
-            super.position.x = position_origin.x + sin(frameCount * speedX * .04) * oscX * 75;
-            super.position.y = position_origin.y + sin(frameCount * speedY * .04) * oscY * 37.5;
+            super.position.x = position_origin.x + sin(frameCount * speedX * .08) * oscX * 75;
+            super.position.y = position_origin.y + sin(frameCount * speedY * .08) * oscY * 37.5;
 
             //si la partícula está seleccionada
             if(super.selected){
