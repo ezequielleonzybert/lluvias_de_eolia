@@ -1,7 +1,7 @@
 class Orb extends Particle{ //clase para las particulas de la escena 2
     PVector position_origin;
     float oscX, oscY, speedX, speedY; //atributos para el movimiento
-    Audio audio; //clase que carga el audio minim
+    AudioOrb audio; //clase que carga el audio minim
     Orb(float x, float y){
         super.position = new PVector(x, y);
         //le damos el mismo radio que el botón para crearla
@@ -20,14 +20,14 @@ class Orb extends Particle{ //clase para las particulas de la escena 2
             b.rotation = 0;
         }
         //instancia de la clase Audio
-        audio = new Audio();
+        audio = new AudioOrb();
     }
     void update(){
         //llamamos al update() de la clase madre Particule
         super.update();
         //mapeamos la posición en la mantalla para asignar frequencia y ganancia al audio
         float freq = map(super.position.x, width, 2 * width, 50, 200);
-        float gain = map(super.position.y, height, 0, -30, 20);
+        float gain = map(super.position.y, height, 0, -30, 0);
         //llamamos al método update de audio con los datos procesados anteriormente
         audio.update(freq, gain);
         //si no se está arrastrando la partículoa...
