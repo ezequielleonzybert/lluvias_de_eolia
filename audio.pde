@@ -26,18 +26,39 @@ class Audio{
     }
     void analysis(){ //función para analizar y dibujar el audio
         //realizamos el analisis de frecuencias sobre la salida out con el método forward de fft
-        //fft.forward(out.mix);
+        fft.forward(out.mix);
         //los sonidos utilizados en esta app no cubren todo el espectro, especialmente no
         ///se utilizan muchos agudos, por lo que reducimos el número de iteraciones del for()
         //a un máximo
-        float max = fft.specSize()/18;
+        float max = floor(fft.specSize()/18);
          //con el for() dibujamos lineas con los resultados obtenidos de forward 
         for(int i = 0; i < max; i++){            
             //el método getBand(n) nos devuelve la amplitud de la banda de frecuencia n.
             float bandAmp = fft.getBand(i);
             stroke(255);
-            strokeWeight(4);
-            line( i*width/max - width, height, i*width/max - width, height - bandAmp * 1.5);
+            strokeWeight(2);
+            line( i*width/max - width , height, i*width/max - width, height - bandAmp * 1.5);
+
+        //circulito flashero
+            strokeWeight(2);
+            float 
+                x = width / 2 - width,
+                y = height / 2,
+                pot1 = ui.containers[2].buttons[0].rotation,
+                pot2 = ui.containers[2].buttons[1].rotation,
+                r = pot1 * 50,
+                dirX = cos(i*TWO_PI/max),
+                dirY = sin(i*TWO_PI/max),
+                x0 = dirX,
+                y0 = dirY;
+            push();
+            translate(x,y);
+            rotate((float)frameCount/200);
+            line(x0*r, y0*r, x0*r + bandAmp*dirX, y0*r + bandAmp*dirY);
+            r *= .5;
+            rotate((float)frameCount/200);
+            line(x0*r, y0*r, x0*r + bandAmp*dirX/10, y0*r + bandAmp*dirY/10);
+            pop();
         }
     }
 }
