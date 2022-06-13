@@ -13,7 +13,7 @@ class AudioDrop extends Audio{
         //conectamos la variable de rotación del potenciometro a la frecuencia del audio
         super.freqControl.setConstant(ui.containers[0].buttons[1].rotation * 150 + 150);
     }
-    void noteOn(){
+    void noteOn(){ //reproducir audio
         adsr.noteOn();
     }
 }

@@ -15,6 +15,7 @@ class Drop extends Particle{ //particulas de la escena 1
             position.add(velocity); 
             if(position.y + radius > height){ //rebotar en el borde inferior
                 velocity.y *= -1;
+                //reproducir audio
                 audio.noteOn();
             }
             position.add(velocity); 
