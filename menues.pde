@@ -1,3 +1,4 @@
+//acá dibujo todos los menues
 class MenuButton{
     String value;
     float x,y,w,s;
@@ -60,7 +61,7 @@ void mainMenu(){
     }
 
     //Draw
-    background(0);
+    background(30);
     PImage logo = loadImage("data/imagen.png");
     image(logo, 50, 20);
     iniciar.draw();
@@ -71,7 +72,7 @@ void mainMenu(){
 }
 
 void manual(){
-    background(0);
+    background(30);
     textSize(15);
     text(
         "1. Escena central: puedes agregar tantas pelotitas como quieras desde el menú superior simplemente "+
@@ -93,7 +94,7 @@ void manual(){
 }
 
 void sceneSelect(){
-    background(0);
+    background(30);
     MenuButton 
         uno = new MenuButton("1", width/2 - 100, height/2, 30),
         dos = new MenuButton("2", width/2, height/2, 30),
@@ -113,4 +114,43 @@ void sceneSelect(){
         scene = 1;
         translation_target = constrain(translation_target + width, 0, width);
     }    
+}
+
+void home(){
+    background(30);
+    MenuButton continuar = new MenuButton("CONTINUAR", width/2 - 50, height/2 - 50, 30);
+    MenuButton reiniciar = new MenuButton("REINICIAR", width/2 - 50, height/2, 30);
+    MenuButton mainmenu = new MenuButton("MENÚ PRINCIPAL", width/2 - 50, height/2 + 50, 30);
+    master.gain.setValue(-100);
+    
+    continuar.draw();
+    reiniciar.draw();
+    mainmenu.draw();
+
+    if(continuar.active()){
+        scene = 1;
+        master.gain.setValue(0);
+    }
+    if(reiniciar.active()){
+        translation_target = 0;
+        drops.clear();
+        for(Orb o : orbs){
+            o.audio.gain.setValue(-100); 
+            //no se como destruirla asi que le bajo el volumen
+        }
+        orbs.clear();
+        master.gain.setValue(0);
+        scene = 1;
+    }
+    if(mainmenu.active()){
+        translation_target = 0;
+        drops.clear();
+        for(Orb o : orbs){
+            o.audio.gain.setValue(-100); 
+            //no se como destruirla asi que le bajo el volumen
+        }
+        orbs.clear();
+        master.gain.setValue(0);
+        scene = -1;
+    }
 }

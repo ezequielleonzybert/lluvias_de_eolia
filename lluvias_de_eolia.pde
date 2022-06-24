@@ -31,6 +31,12 @@ void draw(){
     if(scene == 1){
         background(30);
         translateSmooth(); //función que hace las transiciones
+        master.analysis(); //escena 3
+        //rectángulo que tapa la escena 3 en la escena 1
+        rectMode(CORNER);
+        noStroke();
+        fill(30);
+        rect(0,0,width,height);
         ui.update();
         ui.render();
         for(Drop d : drops){ // un bucle for para recorrer cada partícula
@@ -41,8 +47,11 @@ void draw(){
             o.update();
             o.render();
         }
-        master.analysis();
-    }    
+        
+    }
+    if(scene == 2){
+        home();
+    }
 }
 
 // ♡ ヽ(*⌒▽⌒*)／ ♡

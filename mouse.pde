@@ -30,6 +30,9 @@ void mousePressed(){
         case "slide_R":
             translation_target = constrain(translation_target - width, -width, 0);
             break;
+        case "home":
+            scene = 2;
+        break;
     }
 }
 
@@ -69,7 +72,7 @@ void mouseReleased() {
             //del array de partículas (no sabía como eliminar el objeto
             //de audio completamente así que decidí bajarle la ganancia).
             if(ui.hover().button_type == "trashcan"){
-                orbs.get(i).audio.gain.setValue(-100);
+                orbs.get(i).audio.gain.setValue(-100); //no se como destruirla asi que le bajo el volumen
                 orbs.remove(i);
             }
         }
