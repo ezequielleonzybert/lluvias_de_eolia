@@ -8,6 +8,7 @@ float translation_display, translation_target; //dos variables para el mecanismo
 //Objeto de audio donde se conectarán la salida de audio de cada partícula.
 //este es el mix de todos los audios que analizaremos en la escena 3
 Audio master;
+int scene = -1;
 
 void setup(){
     size(1000, 500);
@@ -18,19 +19,30 @@ void setup(){
 }
 
 void draw(){
-    background(30);
-    translateSmooth(); //función que hace las transiciones
-    ui.update();
-    ui.render();
-    for(Drop d : drops){ // un bucle for para recorrer cada partícula
-        d.update();
-        d.render();
+    if(scene == -1){
+        mainMenu();
     }
-    for(Orb o : orbs){ // un bucle for para recorrer cada partícula
-        o.update();
-        o.render();
+    if(scene == -2){
+        manual();
     }
-    master.analysis();
+    if(scene == -3){
+        sceneSelect();
+    }
+    if(scene == 1){
+        background(30);
+        translateSmooth(); //función que hace las transiciones
+        ui.update();
+        ui.render();
+        for(Drop d : drops){ // un bucle for para recorrer cada partícula
+            d.update();
+            d.render();
+        }
+        for(Orb o : orbs){ // un bucle for para recorrer cada partícula
+            o.update();
+            o.render();
+        }
+        master.analysis();
+    }    
 }
 
 // ♡ ヽ(*⌒▽⌒*)／ ♡
