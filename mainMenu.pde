@@ -48,8 +48,7 @@ void mainMenu(){
         manual = new MenuButton("MANUAL", width/2 - 50, height/2, 30),
         salir = new MenuButton("SALIR", width/2 - 50, height/2 + 50, 30);
 
-    //Draw
-    background(0);
+   
     if(salir.active()){
         exit();
     }
@@ -59,26 +58,33 @@ void mainMenu(){
     if(iniciar.active()){
         scene = -3;
     }
+
+    //Draw
+    background(0);
+    PImage logo = loadImage("data/imagen.png");
+    image(logo, 50, 20);
     iniciar.draw();
     manual.draw();
     salir.draw();
+    textSize(15);
+    text("Creador de la aplicación: Ezequiel León Zybert", 20, height - 20);
 }
 
 void manual(){
     background(0);
     textSize(15);
     text(
-        "1. Escena central: puedes agregar tantas pelotitas como quieras desde el menú superior simplemente"+
-        "arrastrando el circulo blanco al espacio de la pantalla. Estas pelotitas rebotan en el borde inferior"+
+        "1. Escena central: puedes agregar tantas pelotitas como quieras desde el menú superior simplemente "+
+        "arrastrando el circulo blanco al espacio de la pantalla. Estas pelotitas rebotan en el borde inferior "+
         "generando un sonido. La frecuencia de este sonido es dada por el potenciometro del menú. "+
-        "Debes indicar la frecuencia antes de crear la pelotita. Arrastra las pelotitas al círculo negro para"+
+        "Debes indicar la frecuencia antes de crear la pelotita. Arrastra las pelotitas al círculo negro para "+
         "eliminarlas.\n\n"+
         "2. Escena derecha: aquí las pelotitas se mantienen suspendidas en donde las sueltes, con "+
         "dos potenciómetros de la izquierda controlas la amplitud de movimiento para el eje X e Y respectivamente. "+
         "Con los dos potenciometros de la derecha controlas la velocidad de movimiento en X e Y respectivamente. "+
-        "El estado inicial de todos los potenciómetros es 0. Aquí puedes seleccionar las pelotitas con el mouse y"+
-        "modificar sus parámetros luego de haberlas creado. La posición horizontal de la pelotita determina su
-        tonalidad y la posición vertical su potencia sonora",
+        "El estado inicial de todos los potenciómetros es 0. Aquí puedes seleccionar las pelotitas con el mouse y "+
+        "modificar sus parámetros luego de haberlas creado. La posición horizontal de la pelotita determina su "+
+        "tonalidad y la posición vertical su potencia sonora",
         50,50,width-100,height-100
     );
     MenuButton atras = new MenuButton("ATRAS", width/2 - 50, height - 50, 30);

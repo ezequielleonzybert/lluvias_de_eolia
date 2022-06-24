@@ -54,6 +54,15 @@ class UI{
                     position.x + w/5, position.y
                 );
             }
+            else if(id == "home"){
+                fill(255);
+                rect(position.x, position.y, w, h, 0,20,0,0);
+                stroke(100);
+                strokeWeight(5);
+                line(position.x -w/5, position.y + w/5, position.x + w/5, position.y + w/5);
+                line(position.x -w/5, position.y, position.x + w/5, position.y);
+                line(position.x -w/5, position.y - w/5, position.x + w/5, position.y - w/5);
+            }
             else if(id == "menu_2"){
                 fill(255);
                 rect(position.x, position.y, w, h, 0,0,20,20);
@@ -81,7 +90,7 @@ class UI{
             button_index = i;
         }
     }
-    Container[] containers = new Container[5]; //instanciando los container
+    Container[] containers = new Container[6]; //instanciando los container
     UI(){ //creando cada menú, con sus respectivos botones usando el constructor
         containers[0] = new Container("menu_1", width/2, thickness/2, thickness * 3, thickness, 3);
         containers[0].buttons[0].type = "circle";
@@ -102,6 +111,7 @@ class UI{
 
         containers[3] = new Container("slide_L", thickness * .5, height/2, thickness, thickness * 2, 0);
         containers[4] = new Container("slide_R", width - thickness/2, height/2, thickness, thickness * 2, 0);
+        containers[5] = new Container("home", width - thickness/2, thickness/2, thickness, thickness, 0);
     }
     void update(){
         for(Container c : containers){
