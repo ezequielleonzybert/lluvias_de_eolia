@@ -118,10 +118,13 @@ void sceneSelect(){
 
 void home(){
     background(30);
-    MenuButton continuar = new MenuButton("CONTINUAR", width/2 - 50, height/2 - 50, 30);
-    MenuButton reiniciar = new MenuButton("REINICIAR", width/2 - 50, height/2, 30);
-    MenuButton mainmenu = new MenuButton("MENÚ PRINCIPAL", width/2 - 50, height/2 + 50, 30);
-    master.gain.setValue(-100);
+    MenuButton continuar = new MenuButton("CONTINUAR", width/2 - 65, height/2 - 50, 30);
+    MenuButton reiniciar = new MenuButton("REINICIAR", width/2 - 65, height/2, 30);
+    MenuButton mainmenu = new MenuButton("MENÚ PRINCIPAL", width/2 - 65, height/2 + 50, 30);
+    master.gain.setValue(-100);for(Orb o : orbs){
+        o.audio.gain.setValue(-100); 
+        //no se como destruirla asi que le bajo el volumen
+    }
     
     continuar.draw();
     reiniciar.draw();
@@ -129,7 +132,9 @@ void home(){
 
     if(continuar.active()){
         scene = 1;
-        master.gain.setValue(0);
+        for(Orb o : orbs){
+            o.audio.gain.setValue(0); 
+        }
     }
     if(reiniciar.active()){
         translation_target = 0;

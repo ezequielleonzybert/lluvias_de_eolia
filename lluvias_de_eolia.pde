@@ -36,7 +36,7 @@ void draw(){
         rectMode(CORNER);
         noStroke();
         fill(30);
-        rect(0,0,width,height);
+        rect(0,0,width*2,height);
         ui.update();
         ui.render();
         for(Drop d : drops){ // un bucle for para recorrer cada partícula
