@@ -6,7 +6,7 @@ ArrayList<Drop> drops; //un array donde se van a guardar las particulas de la es
 ArrayList<Orb> orbs;
 float translation_display, translation_target; //dos variables para el mecanismo de transición suave entre escenas
 //Objeto de audio donde se conectarán la salida de audio de cada partícula.
-//este es el mix de todos los audios que analizaremos para la escena 3
+//este es el mix de todos los audios que analizaremos en la escena 3
 Audio master;
 
 void setup(){

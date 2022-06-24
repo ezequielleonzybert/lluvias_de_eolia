@@ -24,7 +24,7 @@ class Audio{
         //creamos la instancia de fft con los argumentos tamaño del bufer y sample rate
         fft = new FFT(out.bufferSize(), 2048);
     }
-    void analysis(){ //función para analizar y dibujar el audio
+    void analysis(){ //función para analizar y dibujar el audio, la usaré solo con el master
         //realizamos el analisis de frecuencias sobre la salida out con el método forward de fft
         fft.forward(out.mix);
         //los sonidos utilizados en esta app no cubren todo el espectro, especialmente no
@@ -35,22 +35,24 @@ class Audio{
         for(int i = 0; i < max; i++){            
             //el método getBand(n) nos devuelve la amplitud de la banda de frecuencia n.
             float bandAmp = fft.getBand(i);
+            //linkeamos potenciometros a un float
+            float pot1 = ui.containers[2].buttons[0].rotation;
+            float pot2 = ui.containers[2].buttons[1].rotation + 1;
             stroke(255);
-            strokeWeight(2);
+            strokeWeight(pot2);
             line( i*width/max - width , height, i*width/max - width, height - bandAmp * 1.5);
 
         //circulito flashero
-            strokeWeight(2);
+            strokeWeight(pot2);
             float 
                 x = width / 2 - width,
                 y = height / 2,
-                pot1 = ui.containers[2].buttons[0].rotation,
-                pot2 = ui.containers[2].buttons[1].rotation,
                 r = pot1 * 50,
                 dirX = cos(i*TWO_PI/max),
                 dirY = sin(i*TWO_PI/max),
                 x0 = dirX,
                 y0 = dirY;
+                
             push();
             translate(x,y);
             rotate((float)frameCount/200);
