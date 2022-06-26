@@ -57,7 +57,7 @@ class UI{
                     position.x + w/5, position.y
                 );
             }
-            else if(id == "home"){
+            else if(id == "home"){ //home es el boton de 3 rayas
                 fill(255);
                 rect(position.x, position.y, w, h, 0,0,0,20);
                 stroke(100);
@@ -83,7 +83,9 @@ class UI{
             }
         }
     }
-    class Hover{
+    class Hover{ 
+        //hice una clase hover para usarla luego en la funcion hover. así 
+        //enviar muchos datos a la vez con un return
         String container_id, button_type;
         int container_index, button_index;
         Hover(String c, int j, String b, int i){
@@ -126,7 +128,7 @@ class UI{
             c.render();
         }
     }
-    Hover hover(){
+    Hover hover(){ //clase que devuelve los datos del boton que se esta presionando
         String container_id, button_type;
         for(int j = 0; j < containers.length; j++){
             if(pointInRect(

@@ -1,10 +1,10 @@
-//acá dibujo todos los menues
-class MenuButton{
+//acá dibujo todos los menús 
+class MenuButton{ //creo una clase para los botones de los menús
     String value;
     float x,y,w,s;
     boolean active;
 
-    MenuButton(String value, int x , int y, float s){
+    MenuButton(String value, int x , int y, float s){ //constructor
         this.x = x;
         this.y = y;
         this.value = value;
@@ -12,13 +12,13 @@ class MenuButton{
         textSize(s);
         this.w = textWidth(value);
     }
-    boolean hover(){
+    boolean hover(){ //método que detecta si el puntero está sobre este botón
         return 
             mouseX > this.x && mouseX < this.x+this.w &&
             mouseY < this.y && mouseY > this.y-this.s;
     }
 
-    void highlight(){
+    void highlight(){ //método que remarca el botón
         if(hover()){
             stroke(255);
             strokeWeight(3);
@@ -28,13 +28,13 @@ class MenuButton{
         }            
     }
 
-    void draw(){
+    void draw(){ //método que dibuja el botón
         textSize(s);
         text(value, x, y);
         highlight();            
     }
 
-    boolean active(){
+    boolean active(){ //método que detecta si se hizo click en este botón
         if(hover() && mousePressed){
             return true;
         }
@@ -43,13 +43,13 @@ class MenuButton{
         }
     }
 }
-void mainMenu(){
+void mainMenu(){ //función que dibuja el menú principal
     MenuButton
         iniciar = new MenuButton("INICIAR", width/2 - 50, height/2 - 50, 30),
         manual = new MenuButton("MANUAL", width/2 - 50, height/2, 30),
         salir = new MenuButton("SALIR", width/2 - 50, height/2 + 50, 30);
 
-   
+   // comportamiento de cada botón
     if(salir.active()){
         exit();
     }
@@ -60,7 +60,7 @@ void mainMenu(){
         scene = -3;
     }
 
-    //Draw
+    //Draw de todo
     background(30);
     PImage logo = loadImage("data/imagen.png");
     image(logo, 50, 20);
@@ -71,7 +71,7 @@ void mainMenu(){
     text("Creador de la aplicación: Ezequiel León Zybert", 20, height - 20);
 }
 
-void manual(){
+void manual(){ //función que dibuja la pantalla "manual"
     background(30);
     textSize(15);
     text(
@@ -85,7 +85,8 @@ void manual(){
         "Con los dos potenciometros de la derecha controlas la velocidad de movimiento en X e Y respectivamente. "+
         "El estado inicial de todos los potenciómetros es 0. Aquí puedes seleccionar las pelotitas con el mouse y "+
         "modificar sus parámetros luego de haberlas creado. La posición horizontal de la pelotita determina su "+
-        "tonalidad y la posición vertical su potencia sonora",
+        "tonalidad y la posición vertical su potencia sonora.\n\n"+
+        "3. Escena izquierda: representación gráfica del sonido.",
         50,50,width-100,height-100
     );
     MenuButton atras = new MenuButton("ATRAS", width/2 - 50, height - 50, 30);
@@ -93,7 +94,7 @@ void manual(){
     if(atras.active()) scene = -1;
 }
 
-void sceneSelect(){
+void sceneSelect(){  //función que dibuja el submenú selector de escena
     background(30);
     MenuButton 
         uno = new MenuButton("1", width/2 - 100, height/2, 30),
@@ -116,7 +117,7 @@ void sceneSelect(){
     }    
 }
 
-void home(){
+void home(){ //funcion que dibuja el menu de las tres rayitas
     background(30);
     MenuButton continuar = new MenuButton("CONTINUAR", width/2 - 65, height/2 - 50, 30);
     MenuButton reiniciar = new MenuButton("REINICIAR", width/2 - 65, height/2, 30);
@@ -143,13 +144,13 @@ void home(){
             o.audio.gain.setValue(-100); 
             //no se como destruirla asi que le bajo el volumen
         }
-        orbs.clear();
+        orbs.clear(); //borrando las particulas
         master.gain.setValue(0);
         scene = 1;
     }
     if(mainmenu.active()){
         translation_target = 0;
-        drops.clear();
+        drops.clear(); //borrando particulas
         for(Orb o : orbs){
             o.audio.gain.setValue(-100); 
             //no se como destruirla asi que le bajo el volumen
